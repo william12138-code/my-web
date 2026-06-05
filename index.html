@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🐾 动科院训犬表演小队 - 招新啦！</title>
+    <style>
+        :root {
+            --primary: #2d5a3d;
+            --primary-light: #3d7a52;
+            --primary-dark: #1e3d2a;
+            --secondary: #f5a623;
+            --secondary-light: #ffc107;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 30%, #f0f9ff 60%, #fefce8 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* 背景装饰 */
+        body::before {
+            content: '🐾';
+            position: fixed;
+            top: 10%;
+            left: 5%;
+            font-size: 4rem;
+            opacity: 0.05;
+            z-index: 0;
+        }
+        body::after {
+            content: '🐾';
+            position: fixed;
+            bottom: 20%;
+            right: 8%;
+            font-size: 5rem;
+            opacity: 0.05;
+            z-index: 0;
+            transform: rotate(45deg);
+        }
+
+        /* 头部 */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff;
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--secondary);
+            color: #1e293b;
+            box-shadow: 0 4px 16px rgba(245, 166, 35, 0.4);
+        }
+        .btn-primary:hover {
+            background: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(245, 166, 35, 0.5);
+        }
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 特色卡片 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+        .feature-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .feature-card:hover .feature-image img {
+            transform: scale(1.1);
+        }
+        .feature-card-content {
+            padding: 20px;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        .feature-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* 团队介绍 */
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* 介绍卡片 */
+        .intro-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .intro-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .intro-card p {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .interactive-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 12px;
+            background: rgba(45, 90, 61, 0.1);
+            border-radius: 16px;
+            font-size: 0.85rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        .interactive-tag:hover {
+            background: rgba(45, 90, 61, 0.2);
+            transform: translateY(-2px);
+        }
+        .interactive-tag::after {
+            content: 'ℹ️';
+            font-size: 0.7rem;
+        }
+
+        /* 图片展示区 */
+        .gallery-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-lg);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 14px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: #fff;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* 视频区域 */
+        .video-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .video-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .video-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .video-tabs {
+            display: flex;
+            gap: 8px;
+        }
+        .video-tab {
+            padding: 6px 14px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: transparent;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+        .video-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+        .video-container {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-placeholder {
+            text-align: center;
+            color: #94a3b8;
+        }
+        .video-placeholder .play-btn {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .video-placeholder .play-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        .video-placeholder .play-btn span {
+            font-size: 2rem;
+            margin-left: 6px;
+        }
+        .video-info {
+            padding: 16px 24px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+        .video-title {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .video-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* 招新信息 */
+        .recruitment-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .info-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+        .info-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .info-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .info-card .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* 报名区域 */
+        .signup-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .signup-section::before {
+            content: '🐾';
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+        .signup-section h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .signup-section p {
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        .qrcode-container {
+            display: inline-block;
+            background: #fff;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 16px;
+        }
+        .qrcode {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+        .qrcode-hint {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* 弹窗 */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.9) translateY(20px);
+            transition: var(--transition);
+        }
+        .modal-overlay.show .modal {
+            transform: scale(1) translateY(0);
+        }
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: #f1f5f9;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .modal-close:hover {
+            background: #e2e8f0;
+        }
+        .modal-body {
+            padding: 24px;
+        }
+        .modal-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .modal-content {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .modal-content ul {
+            margin: 12px 0;
+            padding-left: 20px;
+        }
+        .modal-content li {
+            margin-bottom: 8px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: var(--primary-dark);
+            color: #fff;
+            padding: 32px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        .footer .contact {
+            margin-top: 8px;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            :root {
+                --radius: 16px;
+                --radius-sm: 10px;
+            }
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-section {
+                padding: 40px 16px;
+            }
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 5px 12px;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 10px 22px;
+                font-size: 0.85rem;
+            }
+            .main-content {
+                padding: 20px 12px;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .section-subtitle {
+                font-size: 0.85rem;
+            }
+            .features-grid {
+                gap: 12px;
+            }
+            .feature-card {
+                padding: 20px;
+            }
+            .feature-icon {
+                font-size: 2.2rem;
+            }
+            .feature-title {
+                font-size: 1rem;
+            }
+            .feature-desc {
+                font-size: 0.8rem;
+            }
+            .intro-card {
+                padding: 16px;
+            }
+            .intro-card h3 {
+                font-size: 1.1rem;
+            }
+            .intro-card p {
+                font-size: 0.85rem;
+            }
+            .interactive-tag {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+            .video-header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            .video-header h3 {
+                font-size: 1rem;
+            }
+            .video-tab {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+            .video-placeholder .play-btn {
+                width: 60px;
+                height: 60px;
+            }
+            .video-placeholder .play-btn span {
+                font-size: 1.5rem;
+            }
+            .video-info {
+                padding: 12px 16px;
+            }
+            .video-title {
+                font-size: 0.9rem;
+            }
+            .video-meta {
+                font-size: 0.7rem;
+            }
+            .recruitment-info {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .info-card {
+                padding: 14px;
+            }
+            .info-card .icon {
+                font-size: 1.2rem;
+            }
+            .info-card .label {
+                font-size: 0.7rem;
+            }
+            .info-card .value {
+                font-size: 0.95rem;
+            }
+            .signup-section {
+                padding: 20px;
+            }
+            .signup-section h3 {
+                font-size: 1.3rem;
+            }
+            .signup-section p {
+                font-size: 0.85rem;
+            }
+            .qrcode-container {
+                padding: 12px;
+            }
+            .qrcode {
+                width: 140px;
+                height: 140px;
+                font-size: 60px;
+            }
+            .qrcode-hint {
+                font-size: 0.75rem;
+            }
+            .modal {
+                max-height: 85vh;
+                margin: 10px;
+            }
+            .modal-header {
+                padding: 16px 20px;
+            }
+            .modal-header h3 {
+                font-size: 1.1rem;
+            }
+            .modal-body {
+                padding: 16px 20px;
+            }
+            .modal-title {
+                font-size: 0.9rem;
+            }
+            .modal-content {
+                font-size: 0.8rem;
+            }
+            .footer {
+                padding: 24px 16px;
+            }
+            .footer p {
+                font-size: 0.8rem;
+            }
+            .footer .contact {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* 小屏手机优化 */
+        @media (max-width: 375px) {
+            .hero-title {
+                font-size: 1.5rem;
+            }
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .recruitment-info {
+                grid-template-columns: 1fr;
+            }
+            .qrcode {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部英雄区 -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <span class="hero-badge">🐕 2024年度招新</span>
+            <h1 class="hero-title">动科院训犬表演小队</h1>
+            <p class="hero-subtitle">招新啦！加入我们，一起开启人与犬的奇妙之旅</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="showModal('about')">了解详情</button>
+                <button class="btn btn-outline" onclick="document.querySelector('.video-section').scrollIntoView({behavior:'smooth'})">观看视频</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- 特色展示 -->
+        <div class="features-grid">
+            <div class="feature-card" onclick="showModal('training')">
+                <div class="feature-image">
+                    <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=professional%20dog%20training%20class%20with%20trainer%20teaching%20obedience%20commands&image_size=square" alt="专业训犬" />
+                </div>
+                <div class="feature-card-content">
+                    <h3 class="feature-title">专业训犬知识</h3>
+                    <p class="feature-desc">学习科学的犬只训练方法，掌握行为矫正技巧</p>
+                </div>
+            </div>
+            <div class="feature-card" onclick="showModal('performance')">
+                <div class="feature-image">
+                    <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=dog%20performance%20show%20on%20stage%20doing%20tricks&image_size=square" alt="精彩表演" />
+                </div>
+                <div class="feature-card-content">
+                    <h3 class="feature-title">精彩表演活动</h3>
+                    <p class="feature-desc">参与各类校园演出和社区活动，展现团队风采</p>
+                </div>
+            </div>
+            <div class="feature-card" onclick="showModal('team')">
+                <div class="feature-image">
+                    <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=happy%20young%20people%20with%20dogs%20team%20photo%20outdoor&image_size=square" alt="团队合影" />
+                </div>
+                <div class="feature-card-content">
+                    <h3 class="feature-title">活力团队氛围</h3>
+                    <p class="feature-desc">结识志同道合的朋友，共同成长进步</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 团队介绍 -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">关于我们</h2>
+                <p class="section-subtitle">了解训犬表演小队的故事与理念</p>
+            </div>
+            
+            <div class="intro-card">
+                <h3>🐾 团队简介</h3>
+                <p>我们是一支专注于犬类训练与表演的团队，致力于通过科学的方法提升犬只的服从性与表演能力。成立以来，我们已经成功举办了 <span class="interactive-tag" onclick="showModal('activities')">多场精彩表演</span>，深受师生和社区居民的喜爱。</p>
+            </div>
+
+            <div class="intro-card">
+                <h3>✨ 加入我们的收获</h3>
+                <p>加入我们，你将有机会：</p>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="interactive-tag" onclick="showModal('knowledge')">学习专业的训犬知识</span>
+                    <span class="interactive-tag" onclick="showModal('practice')">参与各类表演活动</span>
+                    <span class="interactive-tag" onclick="showModal('skills')">提升实践能力</span>
+                    <span class="interactive-tag" onclick="showModal('friends')">结识志同道合的朋友</span>
+                </div>
+            </div>
+
+            <div class="intro-card">
+                <h3>🏆 我们的优势</h3>
+                <p>我们的优势在于 <span class="interactive-tag" onclick="showModal('experience')">丰富的实战经验</span>、<span class="interactive-tag" onclick="showModal('mentor')">专业的指导</span> 以及 <span class="interactive-tag" onclick="showModal('atmosphere')">充满活力的团队氛围</span>。在这里，你不仅能提升专业技能，还能获得宝贵的实践经验。</p>
+            </div>
+        </section>
+
+        <!-- 图片展示区 -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">精彩瞬间</h2>
+                <p class="section-subtitle">回顾我们的活动风采</p>
+            </div>
+
+            <div class="gallery-section">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=university%20students%20training%20dogs%20on%20campus%20lawn&image_size=landscape_4_3" alt="校园训练" />
+                        <div class="gallery-caption">校园日常训练</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=dog%20show%20performance%20on%20stage%20with%20audience&image_size=landscape_4_3" alt="舞台表演" />
+                        <div class="gallery-caption">舞台表演现场</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=cute%20dogs%20doing%20agility%20training%20jumping%20hurdles&image_size=landscape_4_3" alt="敏捷训练" />
+                        <div class="gallery-caption">敏捷训练课程</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=team%20photo%20of%20dog%20training%20club%20members%20with%20their%20dogs&image_size=landscape_4_3" alt="团队合影" />
+                        <div class="gallery-caption">团队合影</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=dog%20obedience%20training%20sit%20stay%20commands&image_size=landscape_4_3" alt="服从训练" />
+                        <div class="gallery-caption">服从训练</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=dog%20show%20competition%20award%20ceremony&image_size=landscape_4_3" alt="颁奖典礼" />
+                        <div class="gallery-caption">比赛获奖</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视频区域 -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">表演视频</h2>
+                <p class="section-subtitle">观看我们的精彩表演</p>
+            </div>
+
+            <div class="video-section">
+                <div class="video-header">
+                    <h3>📹 视频集锦</h3>
+                    <div class="video-tabs">
+                        <button class="video-tab active" data-video="show1">校园表演</button>
+                        <button class="video-tab" data-video="show2">训练日常</button>
+                        <button class="video-tab" data-video="show3">精彩集锦</button>
+                    </div>
+                </div>
+                <div class="video-container" id="videoContainer">
+                    <iframe id="videoFrame" width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <div class="video-title" id="videoTitle">2023年度校园开放日表演</div>
+                    <div class="video-meta" id="videoMeta">观看次数: 2,356 · 发布时间: 2023-10-15</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 招新信息 -->
+        <section class="section">
+            <div class="section-header">
+                <h2 class="section-title">招新详情</h2>
+                <p class="section-subtitle">期待你的加入！</p>
+            </div>
+
+            <div class="recruitment-info">
+                <div class="info-card">
+                    <div class="icon">🎯</div>
+                    <div class="label">招新对象</div>
+                    <div class="value">动物医学专业<br>本科/专科</div>
+                </div>
+                <div class="info-card">
+                    <div class="icon">👥</div>
+                    <div class="label">招收人数</div>
+                    <div class="value">4-5名</div>
+                </div>
+                <div class="info-card">
+                    <div class="icon">⏰</div>
+                    <div class="label">报名时间</div>
+                    <div class="value">即日起至<br>9月30日</div>
+                </div>
+                <div class="info-card">
+                    <div class="icon">📍</div>
+                    <div class="label">面试地点</div>
+                    <div class="value">动科院楼<br>302室</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 报名区域 -->
+        <section class="signup-section">
+            <h3>扫码报名</h3>
+            <p>扫描下方二维码，填写报名信息</p>
+            <div class="qrcode-container">
+                <div class="qrcode">📱</div>
+            </div>
+            <p class="qrcode-hint">微信扫码 · 立即报名</p>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>🐾 动科院训犬表演小队 · 用爱心与专业陪伴每一只狗狗</p>
+        <p class="contact">联系我们: dogteam@xyz.edu.cn</p>
+    </footer>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">详情</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 内容将动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 弹窗数据
+        const modalData = {
+            about: {
+                title: '关于我们',
+                content: `
+                    <div class="modal-title">🐾 动科院训犬表演小队</div>
+                    <div class="modal-content">
+                        <p>成立于2018年的动科院训犬表演小队，是由一群热爱动物、热衷于犬只训练的学生组成的专业团队。</p>
+                        <p>我们的宗旨是：</p>
+                        <ul>
+                            <li>推广科学养犬理念</li>
+                            <li>提升犬只服从性与表演能力</li>
+                            <li>丰富校园文化生活</li>
+                            <li>培养专业兽医人才</li>
+                        </ul>
+                        <p>五年来，我们已培养了30余名优秀的训犬师，参与了50余场各类表演活动。</p>
+                    </div>
+                `
+            },
+            training: {
+                title: '专业训犬知识',
+                content: `
+                    <div class="modal-title">📚 训犬知识体系</div>
+                    <div class="modal-content">
+                        <p>我们的培训课程涵盖：</p>
+                        <ul>
+                            <li><strong>基础服从训练：</strong>坐、卧、立、握手、随行等基础口令</li>
+                            <li><strong>行为矫正：</strong>解决犬只吠叫、咬人、破坏等问题行为</li>
+                            <li><strong>敏捷训练：</strong>跳跃、钻圈、绕杆等障碍训练</li>
+                            <li><strong>表演技巧：</strong>站立行走、鞠躬、握手礼等趣味表演</li>
+                            <li><strong>正向强化：</strong>基于奖励的科学训练方法</li>
+                        </ul>
+                        <p>所有训练均采用正向训练法，注重人与犬的情感沟通。</p>
+                    </div>
+                `
+            },
+            performance: {
+                title: '精彩表演活动',
+                content: `
+                    <div class="modal-title">🎭 表演活动类型</div>
+                    <div class="modal-content">
+                        <p>我们参与的表演活动包括：</p>
+                        <ul>
+                            <li><strong>校园活动：</strong>开学典礼、运动会、开放日等</li>
+                            <li><strong>社区服务：</strong>宠物嘉年华、公益演出</li>
+                            <li><strong>专业比赛：</strong>犬只服从性比赛、敏捷赛</li>
+                            <li><strong>节日庆典：</strong>迎新晚会、元旦晚会</li>
+                        </ul>
+                        <p>每年平均参与8-10场大型活动，是校园里最受欢迎的表演团队之一。</p>
+                    </div>
+                `
+            },
+            team: {
+                title: '活力团队氛围',
+                content: `
+                    <div class="modal-title">👥 团队文化</div>
+                    <div class="modal-content">
+                        <p>我们的团队文化：</p>
+                        <ul>
+                            <li><strong>互助互爱：</strong>成员之间互相帮助，共同进步</li>
+                            <li><strong>专业严谨：</strong>对待训练一丝不苟</li>
+                            <li><strong>快乐至上：</strong>在训练中享受与狗狗相处的快乐</li>
+                            <li><strong>定期团建：</strong>户外烧烤、宠物聚会等团队活动</li>
+                        </ul>
+                        <p>加入我们，不仅能学到专业知识，更能收获一群志同道合的朋友！</p>
+                    </div>
+                `
+            },
+            activities: {
+                title: '精彩活动回顾',
+                content: `
+                    <div class="modal-title">🎪 活动集锦</div>
+                    <div class="modal-content">
+                        <ul>
+                            <li><strong>2023年校园开放日：</strong>精彩的犬只表演吸引了数千名观众</li>
+                            <li><strong>2023年宠物嘉年华：</strong>与社区居民互动，推广科学养犬</li>
+                            <li><strong>2022年运动会开幕式：</strong>作为开场表演惊艳全场</li>
+                            <li><strong>2022年元旦晚会：</strong>原创节目获得最佳创意奖</li>
+                        </ul>
+                        <p>每一场表演都是团队协作的成果，也是展示我们实力的舞台。</p>
+                    </div>
+                `
+            },
+            knowledge: {
+                title: '专业训犬知识',
+                content: `
+                    <div class="modal-title">📖 知识学习内容</div>
+                    <div class="modal-content">
+                        <p>我们提供系统化的训犬知识培训：</p>
+                        <ul>
+                            <li><strong>犬行为学：</strong>了解犬只的行为动机和心理</li>
+                            <li><strong>训练原理：</strong>学习操作性条件反射等理论</li>
+                            <li><strong>实操技能：</strong>一对一指导训练技巧</li>
+                            <li><strong>案例分析：</strong>分析真实案例，积累经验</li>
+                        </ul>
+                        <p>由经验丰富的学长学姐担任导师，确保教学质量。</p>
+                    </div>
+                `
+            },
+            practice: {
+                title: '表演活动参与',
+                content: `
+                    <div class="modal-title">🎬 实践机会</div>
+                    <div class="modal-content">
+                        <p>加入团队后，你将获得丰富的实践机会：</p>
+                        <ul>
+                            <li><strong>日常训练：</strong>每周2-3次的常规训练</li>
+                            <li><strong>节目编排：</strong>参与表演节目的创意策划</li>
+                            <li><strong>现场表演：</strong>代表团队参与各类演出</li>
+                            <li><strong>赛事参与：</strong>参加专业犬只比赛</li>
+                        </ul>
+                        <p>实践是最好的老师，在一次次训练和表演中不断成长！</p>
+                    </div>
+                `
+            },
+            skills: {
+                title: '实践能力提升',
+                content: `
+                    <div class="modal-title">💪 能力培养</div>
+                    <div class="modal-content">
+                        <p>通过参与团队活动，你将提升：</p>
+                        <ul>
+                            <li><strong>沟通能力：</strong>与犬只和团队成员的沟通</li>
+                            <li><strong>组织能力：</strong>参与活动策划和执行</li>
+                            <li><strong>应变能力：</strong>处理表演中的突发情况</li>
+                            <li><strong>专业技能：</strong>兽医专业知识的实际应用</li>
+                        </ul>
+                        <p>这些能力不仅对专业学习有帮助，更是未来职业生涯的宝贵财富。</p>
+                    </div>
+                `
+            },
+            friends: {
+                title: '志同道合的朋友',
+                content: `
+                    <div class="modal-title">👫 交友平台</div>
+                    <div class="modal-content">
+                        <p>团队成员来自不同年级和班级：</p>
+                        <ul>
+                            <li><strong>本科同学：</strong>大二至大四各年级</li>
+                            <li><strong>专科同学：</strong>动物医学相关专业</li>
+                            <li><strong>共同爱好：</strong>都热爱动物，热爱训犬</li>
+                        </ul>
+                        <p>在这里，你将结识一群志同道合的朋友，一起学习、一起成长、一起创造美好的回忆。</p>
+                    </div>
+                `
+            },
+            experience: {
+                title: '丰富的实战经验',
+                content: `
+                    <div class="modal-title">🏅 实战经验</div>
+                    <div class="modal-content">
+                        <p>我们的实战经验包括：</p>
+                        <ul>
+                            <li><strong>表演经验：</strong>50+场各类表演活动</li>
+                            <li><strong>训练经验：</strong>累计训练犬只300+只</li>
+                            <li><strong>比赛经验：</strong>多次获得省级比赛奖项</li>
+                            <li><strong>教学经验：</strong>培养了5届优秀成员</li>
+                        </ul>
+                        <p>丰富的实战经验让我们能够提供最实用的指导和训练。</p>
+                    </div>
+                `
+            },
+            mentor: {
+                title: '专业的指导',
+                content: `
+                    <div class="modal-title">👨‍🏫 导师团队</div>
+                    <div class="modal-content">
+                        <p>我们的指导团队包括：</p>
+                        <ul>
+                            <li><strong>专业老师：</strong>动科院资深教授担任顾问</li>
+                            <li><strong>资深学长：</strong>有多年训犬经验的高年级学生</li>
+                            <li><strong>外聘专家：</strong>专业训犬师定期指导</li>
+                        </ul>
+                        <p>每位新成员都会配备一名一对一导师，全程指导学习和训练。</p>
+                    </div>
+                `
+            },
+            atmosphere: {
+                title: '充满活力的团队氛围',
+                content: `
+                    <div class="modal-title">🌟 团队氛围</div>
+                    <div class="modal-content">
+                        <p>我们的团队氛围：</p>
+                        <ul>
+                            <li><strong>轻松愉快：</strong>训练之余充满欢声笑语</li>
+                            <li><strong>积极向上：</strong>互相鼓励，共同进步</li>
+                            <li><strong>团结协作：</strong>表演需要团队默契配合</li>
+                            <li><strong>关爱动物：</strong>以爱心对待每一只狗狗</li>
+                        </ul>
+                        <p>这里不仅是一个训练团队，更是一个温暖的大家庭。</p>
+                    </div>
+                `
+            }
+        };
+
+        // 显示弹窗
+        function showModal(type) {
+            const overlay = document.getElementById('modalOverlay');
+            const titleEl = document.getElementById('modalTitle');
+            const bodyEl = document.getElementById('modalBody');
+            
+            if (modalData[type]) {
+                titleEl.textContent = modalData[type].title;
+                bodyEl.innerHTML = modalData[type].content;
+            } else {
+                titleEl.textContent = '详情';
+                bodyEl.innerHTML = '<p>暂无详细信息</p>';
+            }
+            
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭弹窗
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // 点击弹窗外部关闭
+        document.getElementById('modalOverlay').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('modalOverlay')) {
+                closeModal();
+            }
+        });
+
+        // 视频切换
+        const videoTabs = document.querySelectorAll('.video-tab');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoMeta = document.getElementById('videoMeta');
+        const videoFrame = document.getElementById('videoFrame');
+        
+        const videoInfo = {
+            show1: { 
+                title: '2023年度校园开放日表演', 
+                meta: '观看次数: 2,356 · 发布时间: 2023-10-15',
+                url: 'https://www.youtube.com/embed/tgbNymZ7vqY'
+            },
+            show2: { 
+                title: '日常训练记录 - 基础服从训练', 
+                meta: '观看次数: 1,823 · 发布时间: 2023-11-02',
+                url: 'https://www.youtube.com/embed/4Z8tV8tNn2Q'
+            },
+            show3: { 
+                title: '2023年度精彩表演集锦', 
+                meta: '观看次数: 3,541 · 发布时间: 2023-12-25',
+                url: 'https://www.youtube.com/embed/7Cj8p92F2vM'
+            }
+        };
+
+        videoTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                videoTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const videoId = tab.dataset.video;
+                if (videoInfo[videoId]) {
+                    videoTitle.textContent = videoInfo[videoId].title;
+                    videoMeta.textContent = videoInfo[videoId].meta;
+                    videoFrame.src = videoInfo[videoId].url;
+                }
+            });
+        });
+
+        // Toast提示
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #1e293b;
+                color: #fff;
+                padding: 12px 24px;
+                border-radius: 30px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                z-index: 1001;
+                opacity: 0;
+                transition: all 0.3s;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.style.opacity = '1', 10);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+
+        // 页面加载完成动画
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.feature-card').forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 100);
+            });
+        });
+    </script>
+</body>
+</html>
